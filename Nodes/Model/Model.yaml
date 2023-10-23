@@ -1,0 +1,9 @@
+Name: Model
+Type: ModelCategoryFolder
+Children:
+- File: Type/Type.yaml
+- File: Instance/Instance.yaml
+- Name: Query_string
+  Type: BaseDataVariableType
+  DataType: String
+  Value: "\"SELECT orders.order_id,\n    customers.customer_name,\n    products.product_name,\n    order_details.quantity,\n    order_details.unit_price,\n    (order_details.quantity * order_details.unit_price) AS total_price\nFROM orders\nJOIN customers ON orders.customer_id = customers.customer_id\nJOIN order_details ON orders.order_id = order_details.order_id\nJOIN products ON order_details.product_id = products.product_id\nWHERE \n    orders.order_date >= '2022-06-01'\n    AND orders.order_date <= '2023-05-31'\n    AND customers.country = 'China'\n    AND products.category = 'Electronics'\nGROUP BY \n    orders.order_id,\n    customers.customer_name,\n    products.product_name,\n    order_details.quantity,\n    order_details.unit_price\nHAVING \n    total_price > 1000\nORDER BY \n    total_price DESC;\""

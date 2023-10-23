@@ -1,0 +1,14 @@
+Name: Instance
+Type: FolderType
+Children:
+- Name: Motor1
+  Type: Motor
+  Children:
+  - Name: Acceleration
+    Type: BaseDataVariableType
+    DataType: Int32
+    Value: 10
+  - Name: Speed
+    Type: BaseDataVariableType
+    DataType: Int32
+    Value: 1
